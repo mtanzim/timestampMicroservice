@@ -10,8 +10,19 @@
 
    <body>
       <div class="container">
-         <h1>Manage Node.js projects and npm packages using package.json</h1>
-         <h3>Part 1 of Free Code Camp Backend Challenges</h3>
+       <h1>FCC Backend Challenges</h1>
+       <h2>Challenge 01:Timestamp API service</h2>
+       <h3>User stories:</h3>
+         <ul>1) I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016)</ul>
+         <ul>2) If it does, it returns both the Unix timestamp and the natural language form of that date.</ul>
+         <ul>3) If it does not contain a date or Unix timestamp, it returns null for those properties.</ul>
+         <h3>Example usage:</h3>
+         <p>
+           <code>https://fcctimestampmicroservice.glitch.me/December%2015,%202015</code><br />
+           <code>https://timestamp-ms.herokuapp.com/1450137600</code>
+        </p>
+         <h3>Example output:</h3>
+         <p><code>{ "unix": 1450137600, "natural": "December 15, 2015" }</code></p>
       </div>
    </body>
 
