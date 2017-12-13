@@ -1,2 +1,5 @@
 [core]
 	excludesfile = /etc/.gitignore-global
+[user]
+	email = mtanzim@gmail.com
+	name = Tanzim Mokammel
