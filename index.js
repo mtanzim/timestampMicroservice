@@ -42,6 +42,11 @@ app.route('/test2')
 		  res.end('Hello World 2!!!');
     })
 
+app.get('/:timestamp', function(req, res) {
+  //console.log(req.query);
+  res.send(req.params.timestamp);
+})
+
 // Respond not found to all the wrong routes
 app.use(function(req, res, next){
   res.status(404);
