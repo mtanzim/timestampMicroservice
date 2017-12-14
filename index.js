@@ -47,6 +47,13 @@ app.get('/:timestamp', function(req, res) {
   //res.send(req.params.timestamp);
   //res.writeHead(200, { 'Content-Type': 'application/json' });
   //res.end(toWrite);
+  if(isNaN(new Date(req.params.timestamp))){
+    console.log(req.params.timestamp);
+    if (isNumber(req.params.timestamp)){
+      console.log('NaN Found');
+    }
+    
+  }
   res.send(convertTime(req.params.timestamp));
 })
 
