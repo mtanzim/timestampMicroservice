@@ -47,14 +47,20 @@ app.get('/:timestamp', function(req, res) {
   //res.send(req.params.timestamp);
   //res.writeHead(200, { 'Content-Type': 'application/json' });
   //res.end(toWrite);
+  console.log(req.params.timestamp);
   if(isNaN(new Date(req.params.timestamp))){
-    console.log(req.params.timestamp);
-    if (isNumber(req.params.timestamp)){
+    if (isNaN(req.params.timestamp)){
       console.log('NaN Found');
+      res.send(convertTime(req.params.timestamp), false, false);
+    } else {
+      console.log('Unix Timestamp found!');
+      res.send(convertTime(req.params.timestamp), false, true);
     }
-    
+  } else {
+    console.log('Natural number found!');
+    res.send(convertTime(req.params.timestamp), true, true);
   }
-  res.send(convertTime(req.params.timestamp));
+  
 })
 
 // Respond not found to all the wrong routes
@@ -76,8 +82,18 @@ app.listen(process.env.PORT, function () {
   console.log('Node.js listening ...');
 });
 
-function convertTime(timeString){
-  var timeObj={"unix":new Date(timeString).getTime(), "natural":new Date(timeString)};
+function convertTime(timeString, isNatural, isValid){
+  var timeObj={};
+  if (!isValid){
+    timeObj = {"unix":null, "natural":null};
+  } else {
+    if (isNatural){
+      timeObj={"unix":new Date(timeString).getTime(), "natural":new Date(timeString)};
+    } else {
+       timeObj={"unix":new Date(timeString).getTime(), "natural":new Date(timeString)};
+    }
+  }
   return JSON.stringify(timeObj);
+  
 }
 
