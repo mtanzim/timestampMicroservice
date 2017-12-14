@@ -43,22 +43,23 @@ app.route('/test2')
     })
 
 app.get('/:timestamp', function(req, res) {
-  console.log(req.params.timestamp);
-  res.send(convertTime(req.params.timestamp), true, true);
-  /*
+  //console.log(req.params.timestamp);
+  //res.send(convertTime(req.params.timestamp), true, true);
+  //res.send(req.params.timestamp);
+  
   if(isNaN(new Date(req.params.timestamp))){
     if (isNaN(req.params.timestamp)){
       console.log('NaN Found');
-      res.send(convertTime(req.params.timestamp), false, false);
+      //res.send(convertTime(req.params.timestamp), false, false);
     } else {
       console.log('Unix Timestamp found!');
-      res.send(convertTime(req.params.timestamp), false, true);
+      res.end(convertTime(req.params.timestamp), false, true);
     }
   } else {
     console.log('Natural date found!');
-    res.send(convertTime(req.params.timestamp), true, true);
+    res.end(convertTime(req.params.timestamp), true, true);
   }
-  */
+  
   
 })
 
