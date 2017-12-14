@@ -44,7 +44,8 @@ app.route('/test2')
 
 app.get('/:timestamp', function(req, res) {
   //console.log(req.query);
-  res.send(req.params.timestamp);
+  //res.send(req.params.timestamp);
+  res.send(convertTime(req.params.timestamp));
 })
 
 // Respond not found to all the wrong routes
@@ -65,4 +66,8 @@ app.use(function(err, req, res, next) {
 app.listen(process.env.PORT, function () {
   console.log('Node.js listening ...');
 });
+
+function convertTime(timeString){
+  return timeString;
+}
 
