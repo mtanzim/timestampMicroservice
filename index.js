@@ -45,6 +45,8 @@ app.route('/test2')
 app.get('/:timestamp', function(req, res) {
   //console.log(req.query);
   //res.send(req.params.timestamp);
+  //res.writeHead(200, { 'Content-Type': 'application/json' });
+  //res.end(toWrite);
   res.send(convertTime(req.params.timestamp));
 })
 
@@ -68,6 +70,7 @@ app.listen(process.env.PORT, function () {
 });
 
 function convertTime(timeString){
-  return timeString;
+  var timeObj={"unix":new Date(timeString).getTime(), "natural":new Date(timeString)};
+  return JSON.stringify(timeObj);
 }
 
