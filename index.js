@@ -55,14 +55,14 @@ app.get('/:timestamp', function(req, res) {
   if(isNaN(new Date(req.params.timestamp))){
     if (isNaN(req.params.timestamp)){
       console.log('NaN Found');
-      res.send(convertTime(req.params.timestamp, false, false));
+      res.type('txt').send(convertTime(req.params.timestamp, false, false));
     } else {
       console.log('Unix Timestamp found!');
-      res.send(convertTime(req.params.timestamp,false, true));
+      res.type('txt').send(convertTime(req.params.timestamp,false, true));
     }
   } else {
     console.log('Natural date found!');
-    res.end(convertTime(req.params.timestamp, true, true));
+    res.type('txt').send(convertTime(req.params.timestamp, true, true));
   }
   
   
@@ -95,13 +95,13 @@ function convertTime(timeString, isNatural, isValid){
     if (isNatural){
       timeObj={"unix":new Date(timeString).getTime(), "natural":timeString};
     } else {
-       let year= new Date(timeString*1000).getFullYear();
-       let months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+      let year= new Date(timeString*1000).getFullYear();
+      let months=['January','February','March','April','May','June','July','August','September','October','November','December'];
       let month=months[new Date(timeString*1000).getMonth()];
       let date=new Date(timeString*1000).getDate();
-      
+
       let naturalString=month+' '+date+', '+year;
-       timeObj={"unix":timeString, "natural":naturalString};
+      timeObj={"unix":timeString, "natural":naturalString};
     }
   }
   return JSON.stringify(timeObj);
