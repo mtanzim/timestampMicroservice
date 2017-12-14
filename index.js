@@ -42,22 +42,25 @@ app.route('/test2')
 		  res.end('Hello World 2!!!');
     })
 
+app.get('/favicon.ico', function(req, res){
+  res.end("Fuck you!");
+});
 app.get('/:timestamp', function(req, res) {
-  //console.log(req.params.timestamp);
+  console.log(req.params.timestamp);
   //res.send(convertTime(req.params.timestamp), true, true);
   //res.send(req.params.timestamp);
   
   if(isNaN(new Date(req.params.timestamp))){
     if (isNaN(req.params.timestamp)){
       console.log('NaN Found');
-      //res.send(convertTime(req.params.timestamp), false, false);
+      res.send(convertTime(req.params.timestamp, false, false));
     } else {
       console.log('Unix Timestamp found!');
-      res.end(convertTime(req.params.timestamp), false, true);
+      res.send(convertTime(req.params.timestamp,false, true));
     }
   } else {
     console.log('Natural date found!');
-    res.end(convertTime(req.params.timestamp), true, true);
+    res.end(convertTime(req.params.timestamp, true, true));
   }
   
   
@@ -88,9 +91,15 @@ function convertTime(timeString, isNatural, isValid){
     timeObj = {"unix":null, "natural":null};
   } else {
     if (isNatural){
-      timeObj={"unix":new Date(timeString).getTime(), "natural":new Date(timeString)};
+      timeObj={"unix":new Date(timeString).getTime(), "natural":timeString};
     } else {
-       timeObj={"unix":new Date(timeString).getTime(), "natural":new Date(timeString)};
+       let year= new Date(timeString*1000).getFullYear();
+       let months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      let month=months[new Date(timeString*1000).getMonth()];
+      let date=new Date(timeString*1000).getDate();
+      
+      let naturalString=month+' '+date+','+year;
+       timeObj={"unix":timeString, "natural":naturalString};
     }
   }
   return JSON.stringify(timeObj);
