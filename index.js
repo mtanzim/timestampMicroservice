@@ -42,9 +42,11 @@ app.route('/test2')
 		  res.end('Hello World 2!!!');
     })
 
+/*
 app.get('/favicon.ico', function(req, res){
-  res.end("Fuck you!");
+  res.end("Icon found");
 });
+*/
 app.get('/:timestamp', function(req, res) {
   console.log(req.params.timestamp);
   //res.send(convertTime(req.params.timestamp), true, true);
@@ -94,11 +96,11 @@ function convertTime(timeString, isNatural, isValid){
       timeObj={"unix":new Date(timeString).getTime(), "natural":timeString};
     } else {
        let year= new Date(timeString*1000).getFullYear();
-       let months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+       let months=['January','February','March','April','May','June','July','August','September','October','November','December'];
       let month=months[new Date(timeString*1000).getMonth()];
       let date=new Date(timeString*1000).getDate();
       
-      let naturalString=month+' '+date+','+year;
+      let naturalString=month+' '+date+', '+year;
        timeObj={"unix":timeString, "natural":naturalString};
     }
   }
