@@ -43,11 +43,9 @@ app.route('/test2')
     })
 
 app.get('/:timestamp', function(req, res) {
-  //console.log(req.query);
-  //res.send(req.params.timestamp);
-  //res.writeHead(200, { 'Content-Type': 'application/json' });
-  //res.end(toWrite);
   console.log(req.params.timestamp);
+  res.send(convertTime(req.params.timestamp), true, true);
+  /*
   if(isNaN(new Date(req.params.timestamp))){
     if (isNaN(req.params.timestamp)){
       console.log('NaN Found');
@@ -57,9 +55,10 @@ app.get('/:timestamp', function(req, res) {
       res.send(convertTime(req.params.timestamp), false, true);
     }
   } else {
-    console.log('Natural number found!');
+    console.log('Natural date found!');
     res.send(convertTime(req.params.timestamp), true, true);
   }
+  */
   
 })
 
